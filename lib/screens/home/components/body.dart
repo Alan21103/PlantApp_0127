@@ -30,6 +30,8 @@ class Body extends StatelessWidget {
                 left: 0,
                 right: 0,
                 child: Container(
+                  alignment: Alignment.center,
+                  padding: EdgeInsets.symmetric(horizontal: kDefaultPadding),
                   margin: EdgeInsets.symmetric(horizontal: kDefaultPadding),
                   height: 54,
                   decoration: BoxDecoration(
@@ -52,11 +54,6 @@ class Body extends StatelessWidget {
                             hintStyle: TextStyle(
                               color: kPrimaryColor.withOpacity(0.5),
                             ),
-                            contentPadding: EdgeInsets.symmetric(
-                              vertical: 16,
-                              horizontal: 16,
-                            ),
-
                             // Icon di kanan (rapi sejajar dengan teks)
                             suffixIcon: Container(
                               margin: EdgeInsets.only(
