@@ -42,6 +42,23 @@ class Body extends StatelessWidget {
                       ),
                     ],
                   ),
+                  child: Row(
+                    children: <Widget>[
+                      Expanded(
+                        child: TextFormField(
+                          decoration: InputDecoration(
+                            hintText: "Search",
+                            hintStyle: TextStyle(
+                              color: kPrimaryColor.withOpacity(0.5),
+                            ),
+                            contentPadding: EdgeInsets.symmetric(horizontal: 16.0),
+                            enabledBorder: InputBorder.none,
+                            focusedBorder: InputBorder.none,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ],
