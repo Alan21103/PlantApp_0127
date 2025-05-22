@@ -1,6 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:geocoding/geocoding.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class MapPage extends StatefulWidget {
@@ -52,6 +54,77 @@ class _MapPageState extends State<MapPage> {
         context,
         ).showSnackBar(SnackBar(content: Text(e.toString())));
     }
+  }
+
+  Future<Position> getPermissions() async{
+    // 1. Cek service GPS
+    if(!await Geolocator.isLocationServiceEnabled()){
+      throw 'Location service belum aktif';
+    }
+
+    // 2. Cek & minta permission
+    LocationPermission perm = await Geolocator.checkPermission();
+    if (perm == LocationPermission.denied){
+      perm = await Geolocator.requestPermission();
+      if (perm == LocationPermission.denied){
+        throw 'Izin lokasi ditolak';
+      }
+    }
+    if (perm == LocationPermission.deniedForever){
+      throw 'Izin lokasi ditolak permanen';
+    }
+
+    // 3. Semua oke, ambil posisi
+    return Geolocator.getCurrentPosition();
+  }
+
+  Future<void> _onTap(LatLng latlng) async {
+    final placemark = await placemarkFromCoordinates(
+      latlng.latitude,
+      latlng.longitude,
+    );
+
+    final p = placemark.first;
+    setState(() {
+      _pickedMarker = Marker(
+        markerId: const MarkerId('picked'),
+        position: latlng,
+        infoWindow: InfoWindow(
+          title: p.name?.isNotEmpty == true ? p.name : 'Lokasi Dipilih',
+          snippet: '${p.street}, ${p.locality}',
+        ),
+      );
+    });
+    final ctrl = await _ctrl.future;
+    await ctrl.animateCamera(CameraUpdate.newLatLngZoom(latlng, 16));
+
+    setState(() {
+      _pickedAddress =
+          '${p.name},${p.street},${p.locality},${p.country},${p.postalCode}';
+    });
+  }
+
+  void _confirmSelection(){
+    showDialog(
+      context: context, 
+      builder: 
+          (_) => AlertDialog(
+            title: const Text('Konfirmasi Alamat'),
+            content: Text(_pickedAddress ?? ''),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(context),
+                child: const Text('Batal'),
+              ),
+              ElevatedButton(onPressed: () {
+                Navigator.pop(context);
+                Navigator.pop(context, _pickedAddress);
+              }, 
+              child: const Text('Pilih'),
+              ),
+            ],
+          )
+    );
   }
 
 
