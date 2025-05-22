@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:plant_app/constraints.dart';
 
-class HeaderWIthSearchBox extends StatelessWidget {
-  const HeaderWIthSearchBox({super.key, required this.size});
+class HeaderWithSearchBox extends StatelessWidget {
+  const HeaderWithSearchBox({super.key, required this.size});
 
   final Size size;
 
