@@ -6,11 +6,15 @@ class ProfileInfo extends StatelessWidget {
     required this.name,
     required this.phone,
     required this.email,
+    required this.address,
+    required this.onTapMap,
   });
 
   final String name;
   final String phone;
   final String email;
+  final String address;
+  final VoidCallback onTapMap;
 
   @override
   Widget build(BuildContext context) {
@@ -26,54 +30,74 @@ class ProfileInfo extends StatelessWidget {
               fontWeight: FontWeight.w600,
             ),
           ),
-          const SizedBox(height: 24),
+          const SizedBox(height: 20),
           Column(
             children: [
               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text(
+                  Text(
                     "Phone",
                     style: TextStyle(
-                      color: Colors.grey,
-                      fontSize: 16,
+                      color: Colors.grey.shade600,
+                      fontSize: 14,
                     ),
                   ),
-                  const Spacer(),
-                  Expanded(
-                    flex: 3,
-                    child: Text(
-                      phone,
-                      textAlign: TextAlign.right,
-                      style: const TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
-                      ),
+                  Text(
+                    phone,
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
                     ),
                   ),
                 ],
               ),
-              const SizedBox(height: 16),
+              const SizedBox(height: 12),
               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text(
+                  Text(
                     "Mail",
                     style: TextStyle(
-                      color: Colors.grey,
+                      color: Colors.grey.shade600,
+                      fontSize: 14,
+                    ),
+                  ),
+                  Text(
+                    email,
+                    style: const TextStyle(
                       fontSize: 16,
+                      fontWeight: FontWeight.w500,
                     ),
                   ),
-                  const Spacer(),
-                  Expanded(
-                    flex: 3,
-                    child: Text(
-                      email,
-                      textAlign: TextAlign.right,
-                      style: const TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
+                ],
+              ),
+              const SizedBox(height: 12),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "Address",
+                    style: TextStyle(
+                      color: Colors.grey.shade600,
+                      fontSize: 14,
+                    ),
+                  ),
+                  Row(
+                    children: [
+                      Text(
+                        address.isNotEmpty ? address : "Not set",
+                        style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500,
+                        ),
                       ),
-                    ),
-                  ),
+                      IconButton(
+                        onPressed: onTapMap,
+                        icon: const Icon(Icons.map, color: Colors.blueAccent),
+                      )
+                    ],
+                  )
                 ],
               ),
             ],
