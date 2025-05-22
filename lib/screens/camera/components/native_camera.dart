@@ -236,6 +236,6 @@ class _CameraPageState extends State<CameraPage> {
                 },
               )
               : const Center(child: CircularProgressIndicator()),
-            );
-          }
-        }
+    );
+  }
+}
