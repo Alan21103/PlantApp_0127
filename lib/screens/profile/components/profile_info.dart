@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:plant_app/constraints.dart';
 
 class ProfileInfo extends StatelessWidget {
   const ProfileInfo({
@@ -72,7 +73,7 @@ class ProfileInfo extends StatelessWidget {
                   ),
                 ],
               ),
-              const SizedBox(height: 12),
+              const SizedBox(height: 5),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -86,15 +87,15 @@ class ProfileInfo extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        address.isNotEmpty ? address : "Not set",
+                        address.isNotEmpty ? address : "Pilih Alamat",
                         style: const TextStyle(
-                          fontSize: 16,
+                          fontSize: 12,
                           fontWeight: FontWeight.w500,
                         ),
                       ),
                       IconButton(
                         onPressed: onTapMap,
-                        icon: const Icon(Icons.map, color: Colors.blueAccent),
+                        icon: const Icon(Icons.map, color: kPrimaryColor),
                       )
                     ],
                   )
