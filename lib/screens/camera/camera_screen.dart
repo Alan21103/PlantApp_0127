@@ -1,11 +1,13 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:plant_app/constraints.dart';
 import 'package:plant_app/screens/camera/components/native_camera.dart';
 import 'package:plant_app/screens/camera/components/storage_helper.dart';
+import 'package:plant_app/screens/home/home_screen.dart';
 
 class CameraScreen extends StatefulWidget {
   const CameraScreen({super.key});
@@ -54,6 +56,17 @@ class _CameraScreenState extends State<CameraScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+        icon: SvgPicture.asset("assets/icons/back_arrow (1).svg",
+         colorFilter: ColorFilter.mode(Colors.white, BlendMode.srcIn),
+        ),
+        onPressed: (){
+          Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (context) => const HomeScreen()),
+            );
+        },
+      ),
         title: const Text('Pilih Foto', style: TextStyle(
           fontSize: 24,
           fontWeight: FontWeight.bold,
