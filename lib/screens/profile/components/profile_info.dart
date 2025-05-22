@@ -106,7 +106,7 @@ class ProfileInfo extends StatelessWidget {
               children: [
                 Flexible(
                   child: Text(
-                    value.isNotEmpty ? value : "Belum diatur",
+                    value.isNotEmpty ? value : "Pilih Alamat",
                     textAlign: TextAlign.right,
                     style: const TextStyle(
                       fontSize: 14,
