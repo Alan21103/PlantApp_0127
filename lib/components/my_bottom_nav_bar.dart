@@ -3,10 +3,15 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:plant_app/constraints.dart';
 import 'package:plant_app/screens/camera/camera_screen.dart';
 import 'package:plant_app/screens/profile/profile_screen.dart';
-
+import 'package:plant_app/screens/home/home_screen.dart';
 
 class MyBottomNavBar extends StatelessWidget {
-  const MyBottomNavBar({super.key});
+  final int currentIndex;
+  
+  const MyBottomNavBar({
+    super.key,
+    required this.currentIndex,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -31,29 +36,52 @@ class MyBottomNavBar extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           IconButton(
-            icon: SvgPicture.asset("assets/icons/flower.svg"),
-            onPressed: () {},
-          ),
-          IconButton(
-            icon: SvgPicture.asset("assets/icons/heart-icon.svg"),
+            icon: SvgPicture.asset(
+              "assets/icons/flower.svg",
+              color: currentIndex == 0 ? kPrimaryColor : Colors.grey,
+            ),
             onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => CameraScreen(),
-                ),
-              );
+              if (currentIndex != 0) {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => HomeScreen(),
+                  ),
+                );
+              }
             },
           ),
           IconButton(
-            icon: SvgPicture.asset("assets/icons/user-icon.svg"),
+            icon: SvgPicture.asset(
+              "assets/icons/camera.svg",
+              width: 25,
+              color: currentIndex == 1 ? kPrimaryColor : Colors.grey,
+            ),
             onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => ProfileScreen(),
-                ),
-              );
+              if (currentIndex != 1) {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => CameraScreen(),
+                  ),
+                );
+              }
+            },
+          ),
+          IconButton(
+            icon: SvgPicture.asset(
+              "assets/icons/user-icon.svg",
+              color: currentIndex == 2 ? kPrimaryColor : Colors.grey,
+            ),
+            onPressed: () {
+              if (currentIndex != 2) {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ProfileScreen(),
+                  ),
+                );
+              }
             },
           ),
         ],
