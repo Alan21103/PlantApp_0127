@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:plant_app/constraints.dart';
+import 'package:plant_app/screens/camera/camera_screen.dart';
 import 'package:plant_app/screens/profile/profile_screen.dart';
 
 
@@ -35,7 +36,14 @@ class MyBottomNavBar extends StatelessWidget {
           ),
           IconButton(
             icon: SvgPicture.asset("assets/icons/heart-icon.svg"),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => CameraScreen(),
+                ),
+              );
+            },
           ),
           IconButton(
             icon: SvgPicture.asset("assets/icons/user-icon.svg"),
