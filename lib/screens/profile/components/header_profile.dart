@@ -9,7 +9,7 @@ class HeaderProfile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: size.height * 0.25,
+      height: size.height * 0.18,
       color: kPrimaryColor, // Light purple
       child: Align(
         alignment: Alignment.bottomCenter,
